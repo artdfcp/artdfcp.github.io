@@ -1,9 +1,15 @@
 /* Styles généraux */
+
+@import url(https://fonts.bunny.net/css?family=bevan:400);
+@import url(https://fonts.bunny.net/css?family=allerta:400);
+
+html, body {
+    height : 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%; /* Définit la hauteur à 100% de la fenêtre */
     background-color: #f0f0f0;
 }
 
@@ -13,29 +19,43 @@ body {
     background-position: center;
 }
 
+.grid-container {
+    height : 100%;
+    display: grid;
+    grid-template-rows: 1fr 1.5fr 1fr;
+}
+
+#center_div{
+    background-color: #f7f1e9;
+}
+
 header {
     text-align: center;
-    padding: 20px;
+    padding: 50px;
 }
 
 h1 {
     font-size: 2.5em;
+    color: #363636;
     font-weight: bold;
+    font-family: 'Bevan', display;
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #666;
     margin-top: 10px;
+    font-family: 'Allerta', sans-serif;
 }
 
-.links {
-    margin-top: 20px;
+.home_links {
+    margin-top: 100px;
 }
 
-.links a {
+.home_links a {
     text-decoration: none;
-    color: #333;
+    color: #363636;
+    font-family: 'Allerta', sans-serif;
     font-size: 1.2em;
     padding: 5px 15px;
     margin-right: 10px;
@@ -44,7 +64,7 @@ h2 {
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.links a:hover {
+.home_links a:hover {
     color: #fff;
     background-color: #a04242;
     border-color: #a04242;
