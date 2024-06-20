@@ -5,6 +5,9 @@ body {
     padding: 0;
     height: 100%; /* Définit la hauteur à 100% de la fenêtre */
     background-color: #f0f0f0;
+}
+
+#accueil { /* fond de la page d'accueil */
     background-image: url('images/cover.png'); 
     background-size: cover;
     background-position: center;
