@@ -84,3 +84,20 @@ h2 {
     height:100%;
 }
 
+
+.legend {
+    padding: 10px;
+    line-height: 1.5em;
+    color: #555;
+}
+.legend .color-bar {
+    height: 20px;
+    width: 150px;
+    background: linear-gradient(to right, red, white, green); /* Ajustez pour correspondre à votre échelle de couleurs */
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+.legend .labels {
+    display: flex;
+    justify-content: space-between;
+}
