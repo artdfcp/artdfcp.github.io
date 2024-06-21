@@ -13,7 +13,7 @@ var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 // Définir une échelle de couleurs basée sur une variable
 function getColor(value) {
     // Utilisation de chroma.js pour créer une échelle de couleurs
-    var colorScale = chroma.scale(['yellow', 'red']).domain([0, 1]); // Adaptez la plage de valeurs selon vos données
+    var colorScale = chroma.scale(['red', 'white', 'green']).domain([0, 1]); // Adaptez la plage de valeurs selon vos données
     return colorScale(value).hex();
 }
 
