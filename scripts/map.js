@@ -3,7 +3,8 @@ var map = L.map('map').setView([46.9, 3.5], 6);
 
 // Ajout tuiles OSM
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    opacity: 0.7 // Ajustez cette valeur pour changer l'opacité
 }).addTo(map);
 
 
@@ -21,10 +22,9 @@ function getColor(value) {
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.score), // Remplacez yourVariable par le nom de votre variable
-        weight: 2,
+        weight: 0.5,
         opacity: 1,
         color: 'white',
-        dashArray: '3',
         fillOpacity: 0.7
     };
 }
