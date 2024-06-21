@@ -10,6 +10,25 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // URL de la fonction API geojson sur Vercel
 var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 
+// Définir une échelle de couleurs basée sur une variable
+function getColor(value) {
+    // Utilisation de chroma.js pour créer une échelle de couleurs
+    var colorScale = chroma.scale(['yellow', 'red']).domain([0, 1]); // Adaptez la plage de valeurs selon vos données
+    return colorScale(value).hex();
+}
+
+// Fonction de style pour les entités GeoJSON
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.yourVariable), // Remplacez yourVariable par le nom de votre variable
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
 // Charger et afficher le GeoJSON depuis la fonction API
 fetch(apiEndpoint)
     .then(function(response) {        
@@ -20,7 +39,8 @@ fetch(apiEndpoint)
     })
     .then(function(data) {
         console.log('GeoJSON data:', data);
-        L.geoJSON(data).addTo(map);
+        // Ajout du GeoJSON à la carte Leaflet avec le style dynamique
+        L.geoJSON(data, { style: style }).addTo(map);
     })
     .catch(function(error) {
         console.error('There has been a problem with your fetch operation:', error);
