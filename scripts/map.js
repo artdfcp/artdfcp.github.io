@@ -20,7 +20,7 @@ function getColor(value) {
 // Fonction de style pour les entités GeoJSON
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.yourVariable), // Remplacez yourVariable par le nom de votre variable
+        fillColor: getColor(feature.properties.score), // Remplacez yourVariable par le nom de votre variable
         weight: 2,
         opacity: 1,
         color: 'white',
