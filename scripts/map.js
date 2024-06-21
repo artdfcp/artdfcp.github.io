@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 // URL de la fonction API geojson sur Vercel
-var geojsonUrl = 'https://get-me-home-back.vercel.app/api/geojson';
+var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 
 // Charger et afficher le GeoJSON depuis la fonction API
 fetch(apiEndpoint)
