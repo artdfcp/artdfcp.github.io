@@ -45,8 +45,6 @@ fetch(apiEndpoint)
         console.error('There has been a problem with your fetch operation:', error);
     });
 
-
-
 // Légende des scores
 var legend = L.control({ position: 'bottomleft' });
 
