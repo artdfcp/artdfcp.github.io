@@ -97,7 +97,13 @@ h2 {
     border: 1px solid #ccc;
     margin-bottom: 5px;
 }
+
 .legend .labels {
     display: flex;
     justify-content: space-between;
+}
+
+.leaflet-popup-content p {
+    margin: 0 !important;
+    padding: 0 !important;
 }

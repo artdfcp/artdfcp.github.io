@@ -28,6 +28,22 @@ function style(feature) {
     };
 }
 
+// ajouter les infos à chaque entité geojson
+function onEachFeature(feature, layer) {
+    if (feature.properties) {
+        for (var key in feature.properties) {
+            if (key = "NOM") {
+                var popupContent = "<p><strong>"+feature.properties[key]+"</strong></p><ul>";
+            }
+        }
+        for (var key in feature.properties) {
+            popupContent += "<p>" + key + ": " + feature.properties[key] + "</p>";
+        }
+        popupContent += "</ul>";
+        layer.bindPopup(popupContent);
+    }
+}
+
 // Charger et afficher le geojson depuis le back
 fetch(apiEndpoint)
     .then(function(response) {        
@@ -39,7 +55,10 @@ fetch(apiEndpoint)
     .then(function(data) {
         console.log('GeoJSON data:', data);
         // Ajout du GeoJSON des communes + style sur la variable score
-        L.geoJSON(data, { style: style }).addTo(map);
+        L.geoJSON(data, {
+            style: style,
+            onEachFeature: onEachFeature
+        }).addTo(map);
     })
     .catch(function(error) {
         console.error('There has been a problem with your fetch operation:', error);
