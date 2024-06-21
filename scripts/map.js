@@ -12,15 +12,16 @@ var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 
 // Charger et afficher le GeoJSON depuis la fonction API
 fetch(apiEndpoint)
-    .then(function(response) {
+    .then(function(response) {        
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
         return response.json();
     })
     .then(function(data) {
+        console.log('GeoJSON data:', data);
         L.geoJSON(data).addTo(map);
     })
     .catch(function(error) {
-        console.log('There has been a problem with your fetch operation:', error);
+        console.error('There has been a problem with your fetch operation:', error);
     });
