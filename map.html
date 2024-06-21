@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get me home ! - Carte</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    
-    <input type="text" id="nameInput" placeholder="Enter your name">
-    <button id="sendButton">Send</button>
-    <p id="responseMessage"></p>
+    <div id="searchpanel">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button id="sendButton">Send</button>
+        <p id="responseMessage"></p>
+    </div>
+
+    <div id="map"></div>
 
     <script src="scripts/send_request_to_back.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="scripts/map.js"></script>
     
 </body>
 </html>
