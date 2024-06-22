@@ -31,18 +31,59 @@ function style(feature) {
     };
 }
 
+//couleurs des scores
+function getpopupColor(d) {
+    if (d == 0) {
+        return '#ff0000';
+    } else if (d >= 10 && d < 20) {
+        return '#d41500';
+    } else if (d >= 10 && d < 20) {
+        return '#bf2000';
+    } else if (d >= 20 && d < 30) {
+        return '#aa2b00';
+    } else if (d >= 30 && d < 40) {
+        return '#953500';
+    } else if (d >= 40 && d < 50) {
+        return '#804000';
+    } else if (d >= 50 && d < 60) {
+        return '#6a4b00';
+    } else if (d >= 60 && d < 70) {
+        return '#555500';
+    } else if (d >= 70 && d < 80) {
+        return '#406000';
+    } else if (d >= 80 && d < 90) {
+        return '#2b6b00';
+    } else if (d >= 90 && d <= 100) {
+        return '#157500';
+    } else if (d == 100) {
+        return '#008000';
+    }
+}
+
 // ajouter les infos à chaque entité geojson
 function onEachFeature(feature, layer) {
     if (feature.properties) {
-        for (var key in feature.properties) {
-            if (key = "NOM") {
-                var popupContent = "<p><strong>"+feature.properties[key]+"</strong></p><ul>";
-            }
+
+        // Info ville ------------------------------------------------
+        var nom_ville = feature.properties["NOM"];
+        var score = feature.properties["score"];
+        var color = getpopupColor(score);
+        var popupContent = "<p><strong>"+ nom_ville + " (<span style='color:" + color + "'>" + score + "</span>)</strong></p><p><span style='color:white'>-</span></p>";
+        
+        // Info densité pop -------------------------------------------
+        var pop_km2_value = feature.properties["pop_km2"];
+        var pop_desc_score_value = feature.properties["score_dpop_desc"];
+        var pop_asc_score_value = feature.properties["score_dpop_asc"];
+
+        if (pop_km2_value !== undefined && pop_desc_score_value !== undefined) {
+            var color1 = getpopupColor(pop_desc_score_value);
+            var color2 = getpopupColor(pop_asc_score_value);
+            popupContent += "<p>Densité de population : " + pop_km2_value + " hab/km² (<strong><span style='color:" + color1 + "'>" + pop_desc_score_value + "</span> ou <span style='color:" + color2 + "'>" + pop_asc_score_value + "</span></strong>)</p>";
+        } else if (pop_km2_value !== undefined || pop_desc_score_value !== undefined) {
+            popupContent += "<p>Densité de population : N/A hab/km² (-)</p>";
         }
-        for (var key in feature.properties) {
-            popupContent += "<p>" + key + ": " + feature.properties[key] + "</p>";
-        }
-        popupContent += "</ul>";
+        
+        popupContent += "";
         layer.bindPopup(popupContent);
     }
 }
