@@ -77,7 +77,7 @@ h2 {
     height : 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1.5fr 5fr;
 }
 
 #map {
@@ -119,4 +119,16 @@ h2 {
     cursor: pointer;
     pointer-events: none;
     opacity: 0.5;
+    border-radius: 3px;
+}
+
+#hide_json:hover {
+    color: #fff;
+    background-color: #a04242;
+    border-color: #a04242;
+    border-radius: 3px;
+}
+
+#searchpanel{
+    background-color: #fffde9;
 }
