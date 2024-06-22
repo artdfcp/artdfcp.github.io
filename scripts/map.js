@@ -44,27 +44,37 @@ function onEachFeature(feature, layer) {
     }
 }
 
-// Charger et afficher le geojson depuis le back
-fetch(apiEndpoint)
-    .then(function(response) {        
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(function(data) {
-        console.log('GeoJSON data:', data);
-        // Ajout du GeoJSON des communes + style sur la variable score
-        L.geoJSON(data, {
-            style: style,
-            onEachFeature: onEachFeature
-        }).addTo(map);
-    })
-    .catch(function(error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
+// fonction pour charger et afficher le geojson depuis le back
+function fetch_geojson(apiEndpoint, fileName){
+    // Ajouter le nom du fichier en tant que paramètre de requête
+    const urlWithParams = `${apiEndpoint}?fileName=${encodeURIComponent(fileName)}`;
+    
+    fetch(urlWithParams)
+        .then(function(response) {        
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('GeoJSON data:', data);
+            // Ajout du GeoJSON des communes + style sur la variable score
+            L.geoJSON(data, {
+                style: style,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        })
+        .catch(function(error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+}
+//fetch tous les subset geojson
+for (let i = 1; i < 11; i++) {
+    let filename = `communes_generalise_sub${i}.geojson`
+    fetch_geojson(apiEndpoint, filename)
+}
 
-// Légende des scores
+// légende des scores
 var legend = L.control({ position: 'bottomleft' });
 
 legend.onAdd = function(map) {
