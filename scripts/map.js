@@ -82,8 +82,18 @@ function onEachFeature(feature, layer) {
         } else if (pop_km2_value !== undefined || pop_desc_score_value !== undefined) {
             popupContent += "<p>Densité de population : N/A hab/km² (-)</p>";
         }
+
+        // Info forêt -------------------------------------------
+        var foret_ha = feature.properties["foret_ha"];
+        var score_foret = feature.properties["score_foret"];
+
+        if (foret_ha !== undefined && score_foret !== undefined) {
+            var color = getpopupColor(score_foret);
+            popupContent += "<p>Forêt (rayon de 10km) : " + foret_ha + " ha (<strong><span style='color:" + color + "'>" + score_foret + "</span></strong>)</p>";
+        } else if (foret_ha !== undefined || score_foret !== undefined) {
+            popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
+        }
         
-        popupContent += "";
         layer.bindPopup(popupContent);
     }
 }
