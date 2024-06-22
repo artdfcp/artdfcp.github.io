@@ -83,7 +83,7 @@ function fetch_geojson(apiEndpoint, fileName){
 }
 //fetch tous les subset geojson
 for (let i = 1; i < 11; i++) {
-    let filename = `communes_generalise_sub${i}.geojson`
+    let filename = `communes_generalise_v3_sub${i}.geojson`
     fetch_geojson(apiEndpoint, filename)
 }
 
