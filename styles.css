@@ -132,3 +132,56 @@ h2 {
 #searchpanel{
     background-color: #fffde9;
 }
+
+
+/* SOURCES ====================================================================================*/
+
+#page_sources{ /* fond de la page d'accueil */
+    background-image: url('images/cover.png'); 
+    background-size: cover;
+    background-position: center;
+}
+
+
+.grid-sources-container{
+    height : 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
+#div_sources{
+    background-color: #f7f1e9;
+}
+
+#liste_sources{
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+#div_sources ul li {
+    text-align: left;
+    text-decoration: none;
+    color: #363636;
+    font-family: 'Allerta', sans-serif;
+    font-size: 1em;
+    padding: 5px 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#div_sources ul li a {
+    text-decoration: none;
+    color: #363636;
+    font-family: 'Allerta', sans-serif;
+    font-size: 1em;
+    color:  #a04242;
+}
+
+#div_sources ul li a:hover {
+    text-decoration: none;
+    color: #363636;
+    font-family: 'Allerta', sans-serif;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
