@@ -35,7 +35,7 @@ function style(feature) {
 function getpopupColor(d) {
     if (d == 0) {
         return '#ff0000';
-    } else if (d >= 10 && d < 20) {
+    } else if (d > 0 && d < 10) {
         return '#d41500';
     } else if (d >= 10 && d < 20) {
         return '#bf2000';
@@ -68,7 +68,7 @@ function onEachFeature(feature, layer) {
         var nom_ville = feature.properties["NOM"];
         var score = feature.properties["score"];
         var color = getpopupColor(score);
-        var popupContent = "<p><strong>"+ nom_ville + " (<span style='color:" + color + "'>" + score + "</span>)</strong></p><p><span style='color:white'>-</span></p>";
+        var popupContent = "<p><strong>"+ nom_ville + " : <span style='color:" + color + "'>" + score + "</span> %</strong></p><p><span style='color:white'>-</span></p>";
         
         // Info densité pop -------------------------------------------
         var pop_km2_value = feature.properties["pop_km2"];
