@@ -13,7 +13,7 @@ var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 
 // échelle de couleurs avec chroma.js
 function getColor(value) {
-    var colorScale = chroma.scale(['red', 'white', 'green']).domain([0, 1]);
+    var colorScale = chroma.scale(['red', 'white', 'green']).domain([0, 100]);
     return colorScale(value).hex();
 }
 
@@ -70,7 +70,7 @@ var legend = L.control({ position: 'bottomleft' });
 legend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'legend');
     div.innerHTML += '<div class="color-bar"></div>';
-    div.innerHTML += '<div class="labels"><span>0</span><span>0.5</span><span>1</span></div>';
+    div.innerHTML += '<div class="labels"><span>0</span><span>50</span><span>100</span></div>';
     return div;
 };
 
