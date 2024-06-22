@@ -89,11 +89,12 @@ h2 {
     padding: 10px;
     line-height: 1.5em;
     color: #555;
+    background-color: white;
 }
 .legend .color-bar {
     height: 20px;
     width: 150px;
-    background: linear-gradient(to right, red, white, green); /* Ajustez pour correspondre à votre échelle de couleurs */
+    background: linear-gradient(to right, red, green); /* Ajustez pour correspondre à votre échelle de couleurs */
     border: 1px solid #ccc;
     margin-bottom: 5px;
 }

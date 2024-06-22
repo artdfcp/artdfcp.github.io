@@ -13,7 +13,7 @@ var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 
 // échelle de couleurs avec chroma.js
 function getColor(value) {
-    var colorScale = chroma.scale(['red', 'white', 'green']).domain([0, 100]);
+    var colorScale = chroma.scale(['red', 'green']).domain([0, 100]);
     return colorScale(value).hex();
 }
 
@@ -46,7 +46,7 @@ function onEachFeature(feature, layer) {
 
 // fonction pour charger et afficher le geojson depuis le back
 function fetch_geojson(apiEndpoint, fileName){
-    // Ajouter le nom du fichier en tant que paramètre de requête
+    // ajout du nom de fichier dans les paramètres de requête
     const urlWithParams = `${apiEndpoint}?fileName=${encodeURIComponent(fileName)}`;
     
     fetch(urlWithParams)
