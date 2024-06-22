@@ -96,7 +96,6 @@ h2 {
     width: 150px;
     background: linear-gradient(to right, red, green); /* Ajustez pour correspondre à votre échelle de couleurs */
     border: 1px solid #ccc;
-    margin-bottom: 5px;
 }
 
 .legend .labels {
@@ -107,4 +106,17 @@ h2 {
 .leaflet-popup-content p {
     margin: 0 !important;
     padding: 0 !important;
+}
+
+#hide_json{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0.5;
 }

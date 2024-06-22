@@ -1,5 +1,8 @@
+let geojsonLayers = []; // Pour stocker les couches GeoJSON
 // Initialisation de la carte centree sur la France
 var map = L.map('map').setView([46.9, 3.5], 6); 
+let totalFiles = 10; // Nombre total de json à charger
+let loadedFiles = 0; // Compteur de json chargés
 
 // OSM
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -21,7 +24,7 @@ function getColor(value) {
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.score),
-        weight: 0.5,
+        weight: 0.2,
         opacity: 1,
         color: 'white',
         fillOpacity: 0.7
@@ -59,10 +62,20 @@ function fetch_geojson(apiEndpoint, fileName){
         .then(function(data) {
             console.log('GeoJSON data:', data);
             // Ajout du GeoJSON des communes + style sur la variable score
-            L.geoJSON(data, {
+            let layer = L.geoJSON(data, {
                 style: style,
                 onEachFeature: onEachFeature
             }).addTo(map);
+            geojsonLayers.push(layer); // ajout à la liste des couches
+            loadedFiles++;
+
+            // active le bouton si tous les fichiers sont chargés
+            if (loadedFiles === totalFiles) {
+                const hide_json = document.getElementById('hide_json');
+                hide_json.disabled = false;
+                hide_json.style.pointerEvents = 'auto';
+                hide_json.style.opacity = '1';
+            }
         })
         .catch(function(error) {
             console.error('There has been a problem with your fetch operation:', error);
@@ -83,5 +96,18 @@ legend.onAdd = function(map) {
     div.innerHTML += '<div class="labels"><span>0</span><span>50</span><span>100</span></div>';
     return div;
 };
+
+// cacher/afficher couches GeoJSON
+document.getElementById('hide_json').addEventListener('click', function() {
+    geojsonLayers.forEach(layer => {
+        if (map.hasLayer(layer)) {
+            map.removeLayer(layer);
+            this.textContent = 'Afficher les scores';
+        } else {
+            layer.addTo(map);
+            this.textContent = 'Cacher les scores';
+        }
+    });
+});
 
 legend.addTo(map);
