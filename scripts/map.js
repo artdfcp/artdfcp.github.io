@@ -202,9 +202,20 @@ function updateSliderValue(sliderId, valueId) {
     valueSpan.textContent = slider_string_val(slider.value);
 }
 
-document.getElementById('slider1').addEventListener('input', function() {
-    updateSliderValue('slider1', 'value1');
+document.getElementById('poids_dpop_desc').addEventListener('input', function() {
+    updateSliderValue('poids_dpop_desc', 'value_poids_dpop_desc');
 });
-document.getElementById('slider2').addEventListener('input', function() {
-    updateSliderValue('slider2', 'value2');
+document.getElementById('poids_foret').addEventListener('input', function() {
+    updateSliderValue('poids_foret', 'value_poids_foret');
+});
+
+// récupérer les valeurs quand on clique sur le bouton
+document.getElementById('sendButton').addEventListener('click', function() {
+    var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
+    var value_poids_foret = document.getElementById('poids_foret').value;
+    var values = {
+        poids_dpop_desc: parseInt(value_poids_dpop_desc),
+        poids_foret: parseInt(value_poids_foret)
+    };
+    console.log(values);
 });

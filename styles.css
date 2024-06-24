@@ -142,6 +142,38 @@ h2 {
     font-size: 0.9em;
 }
 
+.slider {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 7px;
+    background: #555;
+    outline: none;
+    opacity: 0.6;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 25px;
+    border-radius: 20%;
+    background: #a04242;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 25px;
+    border-radius: 20%;
+    background: #a04242;
+    cursor: pointer;
+}
+
 /* SOURCES ====================================================================================*/
 
 #page_sources{ /* fond de la page d'accueil */
