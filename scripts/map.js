@@ -212,7 +212,10 @@ document.getElementById('poids_foret').addEventListener('input', function() {
 // récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
     //désactivation du bouton
-    document.getElementById('sendButton').disabled = true;
+    var sendButton = document.getElementById('sendButton')
+    sendButton.disabled = true;
+    sendButton.style.pointerEvents = 'none';
+    sendButton.style.opacity = '0.5';
     // get users params
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
