@@ -211,6 +211,9 @@ document.getElementById('poids_foret').addEventListener('input', function() {
 
 // récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
+    //désactivation du bouton
+    document.getElementById('sendButton').disabled = true;
+    // get users params
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
     var values = {
@@ -218,7 +221,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_foret: parseInt(value_poids_foret)
     };
     console.log(values);
-
+    // get updated jsons
     geoJsonLayerGroup.clearLayers();
     fetch_all_geojson(apiEndpoint)
 });

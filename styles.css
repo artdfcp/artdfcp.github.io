@@ -175,11 +175,21 @@ h2 {
     cursor: pointer;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    width: 90%;
+}
+
 #sendButton{
     background-color: white;
     border: 1px solid #ccc;
     padding: 5px 10px;
     cursor: pointer;
+    font-family: 'Allerta', sans-serif;
+    color: #363636;
+    font-size: 1em;
     pointer-events: none;
     opacity: 0.5;
     border-radius: 3px;
