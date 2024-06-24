@@ -77,7 +77,7 @@ h2 {
     height : 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.5fr 5fr;
+    grid-template-columns: 2fr 5fr;
 }
 
 #map {
@@ -129,7 +129,7 @@ h2 {
 }
 
 #searchpanel{
-    background-color: #fffde9;
+    background-color: #f7f1e9;
 }
 
 .slider-container {
@@ -138,6 +138,8 @@ h2 {
 
 .slider-label {
     margin-bottom: 10px;
+    font-family: 'Allerta', sans-serif;
+    font-size: 0.9em;
 }
 
 /* SOURCES ====================================================================================*/

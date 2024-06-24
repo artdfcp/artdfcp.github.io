@@ -184,11 +184,22 @@ legend.addTo(map);
 
 // slidebars ================================================
 
+// génère le texte à côté de la slidebar
+function slider_string_val(value) {
+    if (value == 0) {
+        return '0 (peu importe)'
+    } else if (value == 10) {
+        return '10 (très important)'
+    } else {
+        return value
+    }
+}
+
 // MAJ qd bouge le curseur
 function updateSliderValue(sliderId, valueId) {
     var slider = document.getElementById(sliderId);
     var valueSpan = document.getElementById(valueId);
-    valueSpan.textContent = slider.value;
+    valueSpan.textContent = slider_string_val(slider.value);
 }
 
 document.getElementById('slider1').addEventListener('input', function() {
