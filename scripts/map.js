@@ -1,6 +1,9 @@
-let geojsonLayers = []; // Pour stocker les couches GeoJSON
 // Initialisation de la carte centree sur la France
 var map = L.map('map').setView([46.9, 3.5], 6); 
+
+let geojsonLayers = []; // Pour stocker les couches GeoJSON
+var geoJsonLayerGroup = L.layerGroup().addTo(map);
+
 let totalFiles = 10; // Nombre total de json à charger
 let loadedFiles = 0; // Compteur de json chargés
 
@@ -116,8 +119,11 @@ function fetch_geojson(apiEndpoint, fileName){
             let layer = L.geoJSON(data, {
                 style: style,
                 onEachFeature: onEachFeature
-            }).addTo(map);
-            geojsonLayers.push(layer); // ajout à la liste des couches
+            });
+
+            // ajout à la liste des couches pour une gestion ultérieure
+            geoJsonLayerGroup.addLayer(layer);
+            geojsonLayers.push(layer); 
             loadedFiles++;
 
             // active le bouton si tous les fichiers sont chargés
@@ -132,11 +138,24 @@ function fetch_geojson(apiEndpoint, fileName){
             console.error('There has been a problem with your fetch operation:', error);
         });
 }
-//fetch tous les subset geojson
-for (let i = 1; i < 11; i++) {
-    let filename = `communes_generalise_v3_sub${i}.geojson`
-    fetch_geojson(apiEndpoint, filename)
+//fonction pour fetch tous les subset geojson
+function fetch_all_geojson(apiEndpoint) {
+    for (let i = 1; i < 11; i++) {
+        let filename = `communes_generalise_v3_sub${i}.geojson`
+        fetch_geojson(apiEndpoint, filename)
+    }    
 }
+
+//fetch tous les geojson au chargement de la page
+fetch_all_geojson(apiEndpoint)
+
+
+//fetch avec nouveaux paramètres quand appuie sur le bouton
+document.getElementById('sendButton').addEventListener('click', function() {
+    geoJsonLayerGroup.clearLayers();
+    fetch_all_geojson(apiEndpoint)
+});
+
 
 // légende des scores
 var legend = L.control({ position: 'bottomleft' });
