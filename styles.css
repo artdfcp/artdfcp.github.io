@@ -139,6 +139,7 @@ h2 {
 .slider-label {
     margin-bottom: 10px;
     font-family: 'Allerta', sans-serif;
+    color: #363636;
     font-size: 0.9em;
 }
 
@@ -172,6 +173,23 @@ h2 {
     border-radius: 20%;
     background: #a04242;
     cursor: pointer;
+}
+
+#sendButton{
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0.5;
+    border-radius: 3px;
+}
+
+#sendButton:hover {
+    color: #fff;
+    background-color: #a04242;
+    border-color: #a04242;
+    border-radius: 3px;
 }
 
 /* SOURCES ====================================================================================*/

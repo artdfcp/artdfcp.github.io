@@ -126,12 +126,19 @@ function fetch_geojson(apiEndpoint, fileName){
             geojsonLayers.push(layer); 
             loadedFiles++;
 
-            // active le bouton si tous les fichiers sont chargés
+            // active les boutons si tous les fichiers sont chargés
             if (loadedFiles === totalFiles) {
                 const hide_json = document.getElementById('hide_json');
                 hide_json.disabled = false;
                 hide_json.style.pointerEvents = 'auto';
                 hide_json.style.opacity = '1';
+            }
+
+            if (loadedFiles === totalFiles) {
+                const apply_search = document.getElementById('sendButton');
+                apply_search.disabled = false;
+                apply_search.style.pointerEvents = 'auto';
+                apply_search.style.opacity = '1';
             }
         })
         .catch(function(error) {
@@ -148,13 +155,6 @@ function fetch_all_geojson(apiEndpoint) {
 
 //fetch tous les geojson au chargement de la page
 fetch_all_geojson(apiEndpoint)
-
-
-//fetch avec nouveaux paramètres quand appuie sur le bouton
-document.getElementById('sendButton').addEventListener('click', function() {
-    geoJsonLayerGroup.clearLayers();
-    fetch_all_geojson(apiEndpoint)
-});
 
 
 // légende des scores
@@ -209,7 +209,7 @@ document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
 });
 
-// récupérer les valeurs quand on clique sur le bouton
+// récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
@@ -218,4 +218,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_foret: parseInt(value_poids_foret)
     };
     console.log(values);
+
+    geoJsonLayerGroup.clearLayers();
+    fetch_all_geojson(apiEndpoint)
 });
