@@ -181,3 +181,19 @@ document.getElementById('hide_json').addEventListener('click', function() {
 });
 
 legend.addTo(map);
+
+// slidebars ================================================
+
+// MAJ qd bouge le curseur
+function updateSliderValue(sliderId, valueId) {
+    var slider = document.getElementById(sliderId);
+    var valueSpan = document.getElementById(valueId);
+    valueSpan.textContent = slider.value;
+}
+
+document.getElementById('slider1').addEventListener('input', function() {
+    updateSliderValue('slider1', 'value1');
+});
+document.getElementById('slider2').addEventListener('input', function() {
+    updateSliderValue('slider2', 'value2');
+});

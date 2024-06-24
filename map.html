@@ -10,6 +10,16 @@
 <body>
     <div class="elem-container">
         <div id="searchpanel">
+            <div>
+                <div class="slider-container">
+                    <div class="slider-label">Forte densité de population : <strong><span id="value1">5</span></strong></div>
+                    <input type="range" min="0" max="10" value="5" class="slider" id="slider1">
+                </div>
+                <div class="slider-container">
+                    <div class="slider-label">Surface de forêt (r. 10km) : <strong><span id="value2">5</span></strong></div>
+                    <input type="range" min="0" max="10" value="5" class="slider" id="slider2">
+                </div>
+            </div>
             <input type="text" id="nameInput" placeholder="Enter your name">
             <button id="sendButton">Send</button>
             <p id="responseMessage"></p>
@@ -18,7 +28,6 @@
 
         <div id="map"></div>
 
-        <script src="scripts/send_request_to_back.js"></script>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

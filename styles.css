@@ -132,6 +132,13 @@ h2 {
     background-color: #fffde9;
 }
 
+.slider-container {
+    margin: 20px;
+}
+
+.slider-label {
+    margin-bottom: 10px;
+}
 
 /* SOURCES ====================================================================================*/
 
