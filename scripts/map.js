@@ -16,6 +16,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // URL vercel de la fonction qui renvoie geojson
 var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
+var newApiEndpoint = 'https://get-me-home-back.vercel.app/api/newgeojson';
 
 // échelle de couleurs avec chroma.js
 function getColor(value) {
@@ -153,6 +154,61 @@ function fetch_all_geojson(apiEndpoint) {
         fetch_geojson(apiEndpoint, filename)
     }    
 }
+//======================================================================
+// fonction pour charger et afficher le nouveau geojson depuis le back
+function fetch_new_geojson(newApiEndpoint, filename, parameters){
+    parameters.filename = filename;
+    // ajout du nom de fichier dans les paramètres de requête
+    //const urlWithParams = `${apiEndpoint}?fileName=${encodeURIComponent(filename)}`;
+    loadedFiles = 0 //réinitialise le compte
+
+    fetch(newApiEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(parameters)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('GeoJSON modifié:', data);
+        // Ajout du GeoJSON des communes + style sur la variable score
+        let layer = L.geoJSON(data, {
+            style: style,
+            onEachFeature: onEachFeature
+        });
+
+        // ajout à la liste des couches pour une gestion ultérieure
+        geoJsonLayerGroup.addLayer(layer);
+        geojsonLayers.push(layer); 
+        loadedFiles++;
+
+        // active les boutons si tous les fichiers sont chargés
+        if (loadedFiles === totalFiles) {
+            const hide_json = document.getElementById('hide_json');
+            hide_json.disabled = false;
+            hide_json.style.pointerEvents = 'auto';
+            hide_json.style.opacity = '1';
+        }
+
+        if (loadedFiles === totalFiles) {
+            const apply_search = document.getElementById('sendButton');
+            apply_search.disabled = false;
+            apply_search.style.pointerEvents = 'auto';
+            apply_search.style.opacity = '1';
+        }
+    })
+    .catch(error => console.error('Erreur:', error));
+}
+
+//fonction pour fetch tous les subset geojson
+function fetch_all_new_geojson(newApiEndpoint, parameters) {
+    console.log("fetch new data")
+    for (let i = 1; i < 11; i++) {
+        let filename = `communes_generalise_v3_sub${i}.geojson`
+        fetch_new_geojson(newApiEndpoint, filename, parameters)
+    }    
+}
 
 //fetch tous les geojson au chargement de la page
 fetch_all_geojson(apiEndpoint)
@@ -225,7 +281,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_foret: parseInt(value_poids_foret)
     };
     console.log(values);
-    // get updated jsons
+    // clear layer and get updated jsons
     geoJsonLayerGroup.clearLayers();
-    fetch_all_geojson(apiEndpoint)
+    fetch_all_new_geojson(newApiEndpoint, values)
 });
