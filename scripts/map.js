@@ -63,7 +63,6 @@ function getpopupColor(d) {
         return '#008000';
     }
 }
-
 // ajouter les infos à chaque entité geojson
 function onEachFeature(feature, layer) {
     if (feature.properties) {
@@ -101,7 +100,7 @@ function onEachFeature(feature, layer) {
         layer.bindPopup(popupContent);
     }
 }
-
+//===================================================================================
 // fonction pour charger et afficher le geojson depuis le back
 function fetch_geojson(apiEndpoint, fileName){
     // ajout du nom de fichier dans les paramètres de requête
@@ -154,7 +153,7 @@ function fetch_all_geojson(apiEndpoint) {
         fetch_geojson(apiEndpoint, filename)
     }    
 }
-//======================================================================
+//===================================================================================
 // fonction pour charger et afficher le nouveau geojson depuis le back
 function fetch_new_geojson(newApiEndpoint, filename, parameters){
     parameters.filename = filename;
@@ -213,7 +212,7 @@ function fetch_all_new_geojson(newApiEndpoint, parameters) {
 //fetch tous les geojson au chargement de la page
 fetch_all_geojson(apiEndpoint)
 
-
+// ===================================================================================
 // légende des scores
 var legend = L.control({ position: 'bottomleft' });
 
@@ -239,8 +238,8 @@ document.getElementById('hide_json').addEventListener('click', function() {
 
 legend.addTo(map);
 
-// slidebars ================================================
-
+// ===================================================================================
+// slidebars
 // génère le texte à côté de la slidebar
 function slider_string_val(value) {
     if (value == 0) {
@@ -252,7 +251,7 @@ function slider_string_val(value) {
     }
 }
 
-// MAJ qd bouge le curseur
+// MAJ qd bouge le curseur----------------------------------------------------------
 function updateSliderValue(sliderId, valueId) {
     var slider = document.getElementById(sliderId);
     var valueSpan = document.getElementById(valueId);
@@ -261,6 +260,9 @@ function updateSliderValue(sliderId, valueId) {
 
 document.getElementById('poids_dpop_desc').addEventListener('input', function() {
     updateSliderValue('poids_dpop_desc', 'value_poids_dpop_desc');
+});
+document.getElementById('poids_dpop_asc').addEventListener('input', function() {
+    updateSliderValue('poids_dpop_asc', 'value_poids_dpop_asc');
 });
 document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
@@ -275,9 +277,11 @@ document.getElementById('sendButton').addEventListener('click', function() {
     sendButton.style.opacity = '0.5';
     // get users params
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
+    var value_poids_dpop_asc = document.getElementById('poids_dpop_asc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
     var values = {
         poids_dpop_desc: parseInt(value_poids_dpop_desc),
+        poids_dpop_asc: parseInt(value_poids_dpop_asc),
         poids_foret: parseInt(value_poids_foret)
     };
     console.log(values);
