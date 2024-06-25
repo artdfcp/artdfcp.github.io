@@ -26,6 +26,26 @@ function showLoader() {
 function hideLoader() {
     document.getElementById('loader').style.display = 'none';
 }
+//désactive les slidebars
+function disableSlidebars() {
+    var sliderContainers = document.querySelectorAll('.slider-container');
+    sliderContainers.forEach(function(container) {
+        var slider = container.querySelector('.slider');
+        if (slider) {
+            slider.disabled = true;
+        }
+    });
+}
+//réactive les slidebars
+function enableSlidbars() {
+    var sliderContainers = document.querySelectorAll('.slider-container');
+    sliderContainers.forEach(function(container) {
+        var slider = container.querySelector('.slider');
+        if (slider) {
+            slider.disabled = false;
+        }
+    });
+}
 
 // échelle de couleurs avec chroma.js
 function getColor(value) {
@@ -139,6 +159,7 @@ function fetch_geojson(apiEndpoint, fileName){
             //désactive loader si tout est chargé
             if (loadedFiles === totalFiles) {
                 hideLoader();
+                enableSlidbars();
             }
             // active les boutons si tous les fichiers sont chargés
             if (loadedFiles === totalFiles) {
@@ -157,6 +178,7 @@ function fetch_geojson(apiEndpoint, fileName){
         .catch(error => {
             console.error('Error fetching data:', error);
             hideLoader();
+            enableSlidbars();
         });
 }
 //fonction pour fetch tous les subset geojson
@@ -198,6 +220,7 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
         //désactive loader si tout est chargé
         if (loadedFiles === totalFiles) {
             hideLoader();
+            enableSlidbars();
         }
         // active les boutons si tous les fichiers sont chargés
         if (loadedFiles === totalFiles) {
@@ -216,6 +239,7 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
     .catch(error => {
         console.error('Error fetching data:', error);
         hideLoader();
+        enableSlidbars();
     });
 }
 
@@ -229,6 +253,7 @@ function fetch_all_new_geojson(newApiEndpoint, parameters) {
 
 //fetch tous les geojson au chargement de la page
 showLoader()
+disableSlidebars()
 fetch_all_geojson(apiEndpoint)
 
 // ===================================================================================
