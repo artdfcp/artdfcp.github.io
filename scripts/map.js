@@ -105,6 +105,7 @@ function onEachFeature(feature, layer) {
 function fetch_geojson(apiEndpoint, fileName){
     // ajout du nom de fichier dans les paramètres de requête
     const urlWithParams = `${apiEndpoint}?fileName=${encodeURIComponent(fileName)}`;
+    loadedFiles = 0 //réinitialise le compte
     
     fetch(urlWithParams)
         .then(function(response) {        
