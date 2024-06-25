@@ -93,7 +93,7 @@ h2 {
 .legend .color-bar {
     height: 20px;
     width: 150px;
-    background: linear-gradient(to right, red, green); /* Ajustez pour correspondre à votre échelle de couleurs */
+    background: linear-gradient(to right, red, green); /* echelle de couleur pour legende */
     border: 1px solid #ccc;
 }
 
