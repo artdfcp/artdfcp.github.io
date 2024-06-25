@@ -18,6 +18,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 var newApiEndpoint = 'https://get-me-home-back.vercel.app/api/newgeojson';
 
+// afficher le loader
+function showLoader() {
+    document.getElementById('loader').style.display = 'block';
+}
+// cacher loader
+function hideLoader() {
+    document.getElementById('loader').style.display = 'none';
+}
+
 // échelle de couleurs avec chroma.js
 function getColor(value) {
     var colorScale = chroma.scale(['red', 'green']).domain([0, 100]);
@@ -127,6 +136,10 @@ function fetch_geojson(apiEndpoint, fileName){
             geojsonLayers.push(layer); 
             loadedFiles++;
 
+            //désactive loader si tout est chargé
+            if (loadedFiles === totalFiles) {
+                hideLoader();
+            }
             // active les boutons si tous les fichiers sont chargés
             if (loadedFiles === totalFiles) {
                 const hide_json = document.getElementById('hide_json');
@@ -134,7 +147,6 @@ function fetch_geojson(apiEndpoint, fileName){
                 hide_json.style.pointerEvents = 'auto';
                 hide_json.style.opacity = '1';
             }
-
             if (loadedFiles === totalFiles) {
                 const apply_search = document.getElementById('sendButton');
                 apply_search.disabled = false;
@@ -142,8 +154,9 @@ function fetch_geojson(apiEndpoint, fileName){
                 apply_search.style.opacity = '1';
             }
         })
-        .catch(function(error) {
-            console.error('There has been a problem with your fetch operation:', error);
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            hideLoader();
         });
 }
 //fonction pour fetch tous les subset geojson
@@ -182,6 +195,10 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
         geojsonLayers.push(layer); 
         loadedFiles++;
 
+        //désactive loader si tout est chargé
+        if (loadedFiles === totalFiles) {
+            hideLoader();
+        }
         // active les boutons si tous les fichiers sont chargés
         if (loadedFiles === totalFiles) {
             const hide_json = document.getElementById('hide_json');
@@ -189,7 +206,6 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
             hide_json.style.pointerEvents = 'auto';
             hide_json.style.opacity = '1';
         }
-
         if (loadedFiles === totalFiles) {
             const apply_search = document.getElementById('sendButton');
             apply_search.disabled = false;
@@ -197,12 +213,14 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
             apply_search.style.opacity = '1';
         }
     })
-    .catch(error => console.error('Erreur:', error));
+    .catch(error => {
+        console.error('Error fetching data:', error);
+        hideLoader();
+    });
 }
 
 //fonction pour fetch tous les subset geojson
 function fetch_all_new_geojson(newApiEndpoint, parameters) {
-    console.log("fetch new data")
     for (let i = 1; i < 11; i++) {
         let filename = `communes_generalise_v3_sub${i}.geojson`
         fetch_new_geojson(newApiEndpoint, filename, parameters)
@@ -210,6 +228,7 @@ function fetch_all_new_geojson(newApiEndpoint, parameters) {
 }
 
 //fetch tous les geojson au chargement de la page
+showLoader()
 fetch_all_geojson(apiEndpoint)
 
 // ===================================================================================
@@ -289,6 +308,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 // récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
+    showLoader()
     //désactivation du bouton
     var sendButton = document.getElementById('sendButton')
     sendButton.disabled = true;
