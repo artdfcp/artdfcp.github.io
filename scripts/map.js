@@ -365,5 +365,6 @@ document.getElementById('sendButton').addEventListener('click', function() {
     console.log(values);
     // clear layer and get updated jsons
     geoJsonLayerGroup.clearLayers();
+    geojsonLayers = [];
     fetch_all_new_geojson(newApiEndpoint, values)
 });
