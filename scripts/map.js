@@ -268,6 +268,25 @@ document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
 });
 
+//ajuste les deux sliders de densité
+document.addEventListener('DOMContentLoaded', (event) => {
+    const slider_poids_dpop_desc = document.getElementById('poids_dpop_desc');
+    const slider_poids_dpop_asc = document.getElementById('poids_dpop_asc');
+
+    slider_poids_dpop_desc.addEventListener('input', () => {
+        if (slider_poids_dpop_desc.value > 0) {
+            slider_poids_dpop_asc.value = 0;
+            updateSliderValue('poids_dpop_asc', 'value_poids_dpop_asc');
+        }
+    });
+    slider_poids_dpop_asc.addEventListener('input', () => {
+        if (slider_poids_dpop_asc.value > 0) {
+            slider_poids_dpop_desc.value = 0;
+            updateSliderValue('poids_dpop_desc', 'value_poids_dpop_desc');
+        }
+    });
+});
+
 // récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
     //désactivation du bouton
