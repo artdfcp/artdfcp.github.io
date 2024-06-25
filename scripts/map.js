@@ -18,6 +18,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var apiEndpoint = 'https://get-me-home-back.vercel.app/api/geojson';
 var newApiEndpoint = 'https://get-me-home-back.vercel.app/api/newgeojson';
 
+//Chargement ==============================================================
 // afficher le loader
 function showLoader() {
     document.getElementById('loader').style.display = 'block';
@@ -47,6 +48,15 @@ function enableSlidbars() {
     });
 }
 
+function showOverlay() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'block';
+}
+function hideOverlay() {
+    var overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+}
+//Styles ==============================================================
 // échelle de couleurs avec chroma.js
 function getColor(value) {
     var colorScale = chroma.scale(['red', 'green']).domain([0, 100]);
@@ -159,6 +169,7 @@ function fetch_geojson(apiEndpoint, fileName){
             //désactive loader si tout est chargé
             if (loadedFiles === totalFiles) {
                 hideLoader();
+                hideOverlay();
                 enableSlidbars();
             }
             // active les boutons si tous les fichiers sont chargés
@@ -221,6 +232,7 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
         if (loadedFiles === totalFiles) {
             hideLoader();
             enableSlidbars();
+            hideOverlay();
         }
         // active les boutons si tous les fichiers sont chargés
         if (loadedFiles === totalFiles) {
@@ -252,9 +264,10 @@ function fetch_all_new_geojson(newApiEndpoint, parameters) {
 }
 
 //fetch tous les geojson au chargement de la page
-showLoader()
-disableSlidebars()
-fetch_all_geojson(apiEndpoint)
+showOverlay();
+showLoader();
+disableSlidebars();
+fetch_all_geojson(apiEndpoint);
 
 // ===================================================================================
 // légende des scores
@@ -334,6 +347,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 // récupérer les valeurs quand on clique sur le bouton puis fetch avec nouveaux paramètres quand appuie sur le bouton
 document.getElementById('sendButton').addEventListener('click', function() {
     showLoader()
+    showOverlay();
     //désactivation du bouton
     var sendButton = document.getElementById('sendButton')
     sendButton.disabled = true;
