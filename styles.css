@@ -160,6 +160,21 @@ h2 {
     align-items: center;
 }
 
+#subtitle {
+    margin-bottom: 10px;
+    font-family: 'Allerta', sans-serif;
+    color: #363636;
+    font-size: 0.9em;
+}
+
+.subtitle_cont{
+    margin: 20px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 100%;

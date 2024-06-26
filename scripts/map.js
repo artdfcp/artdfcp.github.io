@@ -1,5 +1,5 @@
 // Initialisation de la carte centree sur la France
-var map = L.map('map').setView([46.9, 3.5], 6); 
+var map = L.map('map').setView([46.9, 3], 6); 
 
 let geojsonLayers = []; // Pour stocker les couches GeoJSON
 var geoJsonLayerGroup = L.layerGroup().addTo(map);
