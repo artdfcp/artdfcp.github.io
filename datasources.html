@@ -22,7 +22,13 @@
                         <li><strong>Forêts :</strong> IGN - <a href="https://geoservices.ign.fr/bdforet">Masque Forêt 2019-2022</a> (version bêta)
                             <p>Hectares de forêt dans un rayon de 10 kilomètres autour du centre de la ville. Seules les forêts > 5 hectares sont prises en compte. Ne compte que les forêts françaises (effets de bord aux frontières). Le score correspond au classement de la ville.</p></li>
                         <li><strong>Retrait-gonflement des argiles :</strong> Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/retrait-gonflement-des-argiles">Retrait-gonflement des argiles</a>
-                            <p></p></li>
+                            <p>Score par commune calculé comme la part de la surface concernée, pondérée par le niveau de risque</p></li>
+                        <li><strong>Risque inondation :</strong> Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020">Zonages Inondation</a> (Rapportage 2020)
+                            <p>Score de 0 pour les communes identifiées comme TRI (Territoire à risques importants d'inondation), 100 sinon.</p></li>
+                        <li><strong>Risque incendie :</strong> IGN/Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/obligations-legales-de-debroussaillement">Obligations Légales de Débroussaillement</a>
+                            <p>Score en fonction de la part de la surface de la commune concernée.</p></li>
+                        <li><strong>Risque industriel :</strong> IGN/Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/installations-industrielles">Installations industrielles</a> (06/2024)
+                            <p>Score calculé à partir du nombre d'installations classées SEVESO dans un rayon de 10km autour du centre de la ville. (SEVESO seuil bas : 2, seuil haut : 5. Le score est 0 si la somme est supérieure à 50, proportionnel sinon).</p></li>
                         </ul>
                 </div>
             </header>
