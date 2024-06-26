@@ -4,7 +4,7 @@ var map = L.map('map').setView([46.9, 3.5], 6);
 let geojsonLayers = []; // Pour stocker les couches GeoJSON
 var geoJsonLayerGroup = L.layerGroup().addTo(map);
 
-let totalFiles = 10; // Nombre total de json à charger
+let totalFiles = 20; // Nombre total de json à charger
 let loadedFiles = 0; // Compteur de json chargés
 
 // OSM
@@ -135,6 +135,48 @@ function onEachFeature(feature, layer) {
         } else if (foret_ha !== undefined || score_foret !== undefined) {
             popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
         }
+
+        // Info argiles -------------------------------------------
+        var score_rga = feature.properties["score_rga"];
+
+        if (score_rga !== undefined) {
+            var color = getpopupColor(score_rga);
+            popupContent += "<p>Retrait/gonflement des argiles : <strong><span style='color:" + color + "'>" + score_rga + "</span></strong></p>";
+        } else if (score_rga !== undefined) {
+            popupContent += "<p>Retrait/gonflement des argiles : N/A</p>";
+        }
+
+        // Info inondations -------------------------------------------
+        var score_inondation = feature.properties["score_inondation"];
+
+        if (score_inondation !== undefined) {
+            var color = getpopupColor(score_inondation);
+            popupContent += "<p>Risque d'inondation : <strong><span style='color:" + color + "'>" + score_inondation + "</span></strong></p>";
+        } else if (score_inondation !== undefined) {
+            popupContent += "<p>Risque d'inondation : N/A</p>";
+        }
+
+        // Info incendies -------------------------------------------
+        var score_feu = feature.properties["score_feu"];
+
+        if (score_feu !== undefined) {
+            var color = getpopupColor(score_feu);
+            popupContent += "<p>Risque d'incendies : <strong><span style='color:" + color + "'>" + score_feu + "</span></strong></p>";
+        } else if (score_feu !== undefined) {
+            popupContent += "<p>Risque d'incendies : N/A</p>";
+        }
+
+        // Info SEVESO -------------------------------------------
+        var nb_seveso_haut = feature.properties["nb_seveso_haut"];
+        var nb_seveso_bas = feature.properties["nb_seveso_bas"];
+        var score_indus = feature.properties["score_indus"];
+
+        if (score_indus !== undefined) {
+            var color = getpopupColor(score_indus);
+            popupContent += "<p>Risque industriel : <strong><span style='color:" + color + "'>" + score_indus + "</span></strong> (SEVESO haut : " + nb_seveso_haut + ", bas : " + nb_seveso_bas + ")</p>";
+        } else if (score_indus !== undefined) {
+            popupContent += "<p>Risque industriel : N/A ha (-)</p>";
+        }
         
         layer.bindPopup(popupContent);
     }
@@ -194,8 +236,8 @@ function fetch_geojson(apiEndpoint, fileName){
 }
 //fonction pour fetch tous les subset geojson
 function fetch_all_geojson(apiEndpoint) {
-    for (let i = 1; i < 11; i++) {
-        let filename = `communes_generalise_v3_sub${i}.geojson`
+    for (let i = 1; i < 21; i++) {
+        let filename = `communes_generalise_v8_sub${i}.geojson`
         fetch_geojson(apiEndpoint, filename)
     }    
 }
@@ -257,8 +299,8 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
 
 //fonction pour fetch tous les subset geojson
 function fetch_all_new_geojson(newApiEndpoint, parameters) {
-    for (let i = 1; i < 11; i++) {
-        let filename = `communes_generalise_v3_sub${i}.geojson`
+    for (let i = 1; i < 21; i++) {
+        let filename = `communes_generalise_v8_sub${i}.geojson`
         fetch_new_geojson(newApiEndpoint, filename, parameters)
     }    
 }
@@ -324,6 +366,18 @@ document.getElementById('poids_dpop_asc').addEventListener('input', function() {
 document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
 });
+document.getElementById('poids_rga').addEventListener('input', function() {
+    updateSliderValue('poids_rga', 'value_poids_rga');
+});
+document.getElementById('poids_inondation').addEventListener('input', function() {
+    updateSliderValue('poids_inondation', 'value_poids_inondation');
+});
+document.getElementById('poids_incendies').addEventListener('input', function() {
+    updateSliderValue('poids_incendies', 'value_poids_incendies');
+});
+document.getElementById('poids_seveso').addEventListener('input', function() {
+    updateSliderValue('poids_seveso', 'value_poids_seveso');
+});
 
 //ajuste les deux sliders de densité
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -357,10 +411,18 @@ document.getElementById('sendButton').addEventListener('click', function() {
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_dpop_asc = document.getElementById('poids_dpop_asc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
+    var value_poids_rga = document.getElementById('poids_rga').value;
+    var value_poids_inondation = document.getElementById('poids_inondation').value;
+    var value_poids_incendies = document.getElementById('poids_incendies').value;
+    var value_poids_seveso = document.getElementById('poids_seveso').value;
     var values = {
         poids_dpop_desc: parseInt(value_poids_dpop_desc),
         poids_dpop_asc: parseInt(value_poids_dpop_asc),
-        poids_foret: parseInt(value_poids_foret)
+        poids_foret: parseInt(value_poids_foret),
+        poids_rga: parseInt(value_poids_rga),
+        poids_inondation: parseInt(value_poids_inondation),
+        poids_incendies: parseInt(value_poids_incendies),
+        poids_seveso: parseInt(value_poids_seveso)
     };
     console.log(values);
     // clear layer and get updated jsons
