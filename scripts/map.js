@@ -4,7 +4,7 @@ var map = L.map('map').setView([46.9, 3], 6);
 let geojsonLayers = []; // Pour stocker les couches GeoJSON
 var geoJsonLayerGroup = L.layerGroup().addTo(map);
 
-let totalFiles = 20; // Nombre total de json à charger
+let totalFiles = 40; // Nombre total de json à charger
 let loadedFiles = 0; // Compteur de json chargés
 
 // OSM
@@ -236,8 +236,8 @@ function fetch_geojson(apiEndpoint, fileName){
 }
 //fonction pour fetch tous les subset geojson
 function fetch_all_geojson(apiEndpoint) {
-    for (let i = 1; i < 21; i++) {
-        let filename = `communes_generalise_v8_sub${i}.geojson`
+    for (let i = 1; i < 41; i++) {
+        let filename = `communes_generalise_v20_sub${i}.geojson`
         fetch_geojson(apiEndpoint, filename)
     }    
 }
@@ -299,8 +299,8 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
 
 //fonction pour fetch tous les subset geojson
 function fetch_all_new_geojson(newApiEndpoint, parameters) {
-    for (let i = 1; i < 21; i++) {
-        let filename = `communes_generalise_v8_sub${i}.geojson`
+    for (let i = 1; i < 41; i++) {
+        let filename = `communes_generalise_v20_sub${i}.geojson`
         fetch_new_geojson(newApiEndpoint, filename, parameters)
     }    
 }
