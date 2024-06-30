@@ -10,47 +10,78 @@
 <body>
     <div class="elem-container">
         <div id="searchpanel">
-            <div class="title_container">
-                <p id="search_title"><strong>Rechercher par critère</strong></p>
-            </div>
-            <div class="all-sliders">
-                <div class="slider-container">
-                    <div class="slider-label">Forte densité de population : <strong><span id="value_poids_dpop_desc">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="0" class="slider" id="poids_dpop_desc">
+            <div id="parameters">
+                <div class="title_container">
+                    <p id="search_title"><strong>Rechercher par critère</strong></p>
                 </div>
-                <div class="slider-container">
-                    <div class="slider-label">Faible densité de population : <strong><span id="value_poids_dpop_asc">0</span></strong></div>
-                    <input type="range" min="0" max="10" value="5" class="slider" id="poids_dpop_asc">
-                </div>
-                <div class="slider-container">
-                    <div class="slider-label">Surface de forêt (r. 10km) : <strong><span id="value_poids_foret">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="10" class="slider" id="poids_foret">
-                </div>
-                <div class="subtitle_cont">
-                    <p id="subtitle"><strong>Risques naturels et industriels</strong></p>
-                </div>
-                <div class="slider-container">
-                    <div class="slider-label">Retrait/gonflement des argiles : <strong><span id="value_poids_rga">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="2" class="slider" id="poids_rga">
-                </div>
-                <div class="slider-container">
-                    <div class="slider-label">Inondations : <strong><span id="value_poids_inondation">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="2" class="slider" id="poids_inondation">
-                </div>
-                <div class="slider-container">
-                    <div class="slider-label">Incendies : <strong><span id="value_poids_incendies">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="2" class="slider" id="poids_incendies">
-                </div>
-                <div class="slider-container">
-                    <div class="slider-label">Sites SEVESO : <strong><span id="value_poids_seveso">5</span></strong></div>
-                    <input type="range" min="0" max="10" value="0" class="slider" id="poids_seveso">
+                <div class="all-sliders">
+                    <div class="slider-container">
+                        <div class="slider-label">Forte densité de population : <strong><span id="value_poids_dpop_desc">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_dpop_desc">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Faible densité de population : <strong><span id="value_poids_dpop_asc">5</span></strong></div>
+                        <input type="range" min="0" max="10" value="5" class="slider" id="poids_dpop_asc">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Surface de forêt (r. 10km) : <strong><span id="value_poids_foret">10</span></strong></div>
+                        <input type="range" min="0" max="10" value="10" class="slider" id="poids_foret">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Transports</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Transports en commun : <strong><span id="value_poids_transports">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_transports">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Pistes cyclables : <strong><span id="value_poids_velo">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_velo">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Commerces</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Restauration : <strong><span id="value_poids_restauration">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_restauration">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Commerces de proximité : <strong><span id="value_commerce_proxi">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_commerce_proxi">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Grandes surfaces : <strong><span id="value_grande_surf">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_grande_surf">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Risques naturels et industriels</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Retrait/gonflement des argiles : <strong><span id="value_poids_rga">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_rga">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Inondations : <strong><span id="value_poids_inondation">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_inondation">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Incendies : <strong><span id="value_poids_incendies">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_incendies">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Sites SEVESO : <strong><span id="value_poids_seveso">0</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_seveso">
+                    </div>
                 </div>
             </div>
             <div class="button-container">
                 <button id="sendButton">Appliquer les critères</button>
             </div>
-            <button id="hide_json">Cacher les scores</button>
         </div>
+        <button id="hide_json">Cacher les scores</button>
         <div class="loader-container">
             <div id="map"></div>
             <div class="loader" id="loader"></div>

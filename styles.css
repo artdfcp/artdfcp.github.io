@@ -132,6 +132,11 @@ h2 {
     background-color: #f7f1e9;
     padding-left: 15px;
     padding-right: 15px;
+    max-height: 90vh;
+    min-width: 300px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 9fr 1fr;
 }
 
 .slider-container {
@@ -278,6 +283,10 @@ h2 {
 
 .hidden {
     display: none;
+}
+
+#parameters{
+    overflow-y: scroll;
 }
 
 /* SOURCES ====================================================================================*/
