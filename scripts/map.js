@@ -461,18 +461,44 @@ document.getElementById('sendButton').addEventListener('click', function() {
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_dpop_asc = document.getElementById('poids_dpop_asc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
+    var value_poids_securite = document.getElementById('poids_securite').value;
+    var value_poids_transports = document.getElementById('poids_transports').value;
+    var value_poids_velo = document.getElementById('poids_velo').value;
+    var value_poids_restauration = document.getElementById('poids_restauration').value;
+    var value_poids_commerce_proxi = document.getElementById('poids_commerce_proxi').value;
+    var value_poids_grande_surf = document.getElementById('poids_grande_surf').value;
     var value_poids_rga = document.getElementById('poids_rga').value;
     var value_poids_inondation = document.getElementById('poids_inondation').value;
     var value_poids_incendies = document.getElementById('poids_incendies').value;
     var value_poids_seveso = document.getElementById('poids_seveso').value;
+    var value_poids_terrain = document.getElementById('poids_terrain').value;
+    var value_poids_boul = document.getElementById('poids_boul').value;
+    var value_poids_athl = document.getElementById('poids_athl').value;
+    var value_poids_salles_spe = document.getElementById('poids_salles_spe').value;
+    var value_poids_culture = document.getElementById('poids_culture').value;
+    var value_poids_edu = document.getElementById('poids_edu').value;
+    var value_poids_sante = document.getElementById('poids_sante').value;
     var values = {
         poids_dpop_desc: parseInt(value_poids_dpop_desc),
         poids_dpop_asc: parseInt(value_poids_dpop_asc),
         poids_foret: parseInt(value_poids_foret),
+        poids_securite: parseInt(value_poids_securite),
+        poids_transports: parseInt(value_poids_transports),
+        poids_velo: parseInt(value_poids_velo),
+        poids_restauration: parseInt(value_poids_restauration),
+        poids_commerce_proxi: parseInt(value_poids_commerce_proxi),
+        poids_grande_surf: parseInt(value_poids_grande_surf),
         poids_rga: parseInt(value_poids_rga),
         poids_inondation: parseInt(value_poids_inondation),
         poids_incendies: parseInt(value_poids_incendies),
-        poids_seveso: parseInt(value_poids_seveso)
+        poids_seveso: parseInt(value_poids_seveso),
+        poids_terrain: parseInt(value_poids_terrain),
+        poids_boul: parseInt(value_poids_boul),
+        poids_athl: parseInt(value_poids_athl),
+        poids_salles_spe: parseInt(value_poids_salles_spe),
+        poids_culture: parseInt(value_poids_culture),
+        poids_edu: parseInt(value_poids_edu),
+        poids_sante: parseInt(value_poids_sante)
     };
     console.log(values);
     // clear layer and get updated jsons
