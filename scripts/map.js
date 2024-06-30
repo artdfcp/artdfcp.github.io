@@ -67,7 +67,7 @@ function getColor(value) {
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.score),
-        weight: 0.2,
+        weight: 0.1,
         opacity: 1,
         color: 'white',
         fillOpacity: 0.7
