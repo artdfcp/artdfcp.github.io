@@ -377,6 +377,9 @@ document.getElementById('poids_dpop_asc').addEventListener('input', function() {
 document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
 });
+document.getElementById('poids_loyer').addEventListener('input', function() {
+    updateSliderValue('poids_loyer', 'value_poids_loyer');
+});
 document.getElementById('poids_securite').addEventListener('input', function() {
     updateSliderValue('poids_securite', 'value_poids_securite');
 });
@@ -412,9 +415,6 @@ document.getElementById('poids_terrain').addEventListener('input', function() {
 });
 document.getElementById('poids_boul').addEventListener('input', function() {
     updateSliderValue('poids_boul', 'value_poids_boul');
-});
-document.getElementById('poids_athl').addEventListener('input', function() {
-    updateSliderValue('poids_athl', 'value_poids_athl');
 });
 document.getElementById('poids_salles_spe').addEventListener('input', function() {
     updateSliderValue('poids_salles_spe', 'value_poids_salles_spe');
@@ -461,6 +461,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
     var value_poids_dpop_desc = document.getElementById('poids_dpop_desc').value;
     var value_poids_dpop_asc = document.getElementById('poids_dpop_asc').value;
     var value_poids_foret = document.getElementById('poids_foret').value;
+    var value_poids_loyer = document.getElementById('poids_loyer').value;
     var value_poids_securite = document.getElementById('poids_securite').value;
     var value_poids_transports = document.getElementById('poids_transports').value;
     var value_poids_velo = document.getElementById('poids_velo').value;
@@ -473,7 +474,6 @@ document.getElementById('sendButton').addEventListener('click', function() {
     var value_poids_seveso = document.getElementById('poids_seveso').value;
     var value_poids_terrain = document.getElementById('poids_terrain').value;
     var value_poids_boul = document.getElementById('poids_boul').value;
-    var value_poids_athl = document.getElementById('poids_athl').value;
     var value_poids_salles_spe = document.getElementById('poids_salles_spe').value;
     var value_poids_culture = document.getElementById('poids_culture').value;
     var value_poids_edu = document.getElementById('poids_edu').value;
@@ -482,6 +482,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_dpop_desc: parseInt(value_poids_dpop_desc),
         poids_dpop_asc: parseInt(value_poids_dpop_asc),
         poids_foret: parseInt(value_poids_foret),
+        poids_loyer: parseInt(value_poids_loyer),
         poids_securite: parseInt(value_poids_securite),
         poids_transports: parseInt(value_poids_transports),
         poids_velo: parseInt(value_poids_velo),
@@ -494,7 +495,6 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_seveso: parseInt(value_poids_seveso),
         poids_terrain: parseInt(value_poids_terrain),
         poids_boul: parseInt(value_poids_boul),
-        poids_athl: parseInt(value_poids_athl),
         poids_salles_spe: parseInt(value_poids_salles_spe),
         poids_culture: parseInt(value_poids_culture),
         poids_edu: parseInt(value_poids_edu),
