@@ -136,6 +136,17 @@ function onEachFeature(feature, layer) {
             popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
         }
 
+        // Info sécurité -------------------------------------------
+        var foret_ha = feature.properties["foret_ha"];
+        var score_foret = feature.properties["score_foret"];
+
+        if (foret_ha !== undefined && score_foret !== undefined) {
+            var color = getpopupColor(score_foret);
+            popupContent += "<p>Forêt (rayon de 10km) : " + foret_ha + " ha (<strong><span style='color:" + color + "'>" + score_foret + "</span></strong>)</p>";
+        } else if (foret_ha !== undefined || score_foret !== undefined) {
+            popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
+        }
+
         // Info argiles -------------------------------------------
         var score_rga = feature.properties["score_rga"];
 
@@ -366,6 +377,24 @@ document.getElementById('poids_dpop_asc').addEventListener('input', function() {
 document.getElementById('poids_foret').addEventListener('input', function() {
     updateSliderValue('poids_foret', 'value_poids_foret');
 });
+document.getElementById('poids_securite').addEventListener('input', function() {
+    updateSliderValue('poids_securite', 'value_poids_securite');
+});
+document.getElementById('poids_transports').addEventListener('input', function() {
+    updateSliderValue('poids_transports', 'value_poids_transports');
+});
+document.getElementById('poids_velo').addEventListener('input', function() {
+    updateSliderValue('poids_velo', 'value_poids_velo');
+});
+document.getElementById('poids_restauration').addEventListener('input', function() {
+    updateSliderValue('poids_restauration', 'value_poids_restauration');
+});
+document.getElementById('poids_commerce_proxi').addEventListener('input', function() {
+    updateSliderValue('poids_commerce_proxi', 'value_poids_commerce_proxi');
+});
+document.getElementById('poids_grande_surf').addEventListener('input', function() {
+    updateSliderValue('poids_grande_surf', 'value_poids_grande_surf');
+});
 document.getElementById('poids_rga').addEventListener('input', function() {
     updateSliderValue('poids_rga', 'value_poids_rga');
 });
@@ -377,6 +406,27 @@ document.getElementById('poids_incendies').addEventListener('input', function() 
 });
 document.getElementById('poids_seveso').addEventListener('input', function() {
     updateSliderValue('poids_seveso', 'value_poids_seveso');
+});
+document.getElementById('poids_terrain').addEventListener('input', function() {
+    updateSliderValue('poids_terrain', 'value_poids_terrain');
+});
+document.getElementById('poids_boul').addEventListener('input', function() {
+    updateSliderValue('poids_boul', 'value_poids_boul');
+});
+document.getElementById('poids_athl').addEventListener('input', function() {
+    updateSliderValue('poids_athl', 'value_poids_athl');
+});
+document.getElementById('poids_salles_spe').addEventListener('input', function() {
+    updateSliderValue('poids_salles_spe', 'value_poids_salles_spe');
+});
+document.getElementById('poids_culture').addEventListener('input', function() {
+    updateSliderValue('poids_culture', 'value_poids_culture');
+});
+document.getElementById('poids_edu').addEventListener('input', function() {
+    updateSliderValue('poids_edu', 'value_poids_edu');
+});
+document.getElementById('poids_sante').addEventListener('input', function() {
+    updateSliderValue('poids_sante', 'value_poids_sante');
 });
 
 //ajuste les deux sliders de densité
