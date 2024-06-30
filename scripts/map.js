@@ -102,6 +102,15 @@ function getpopupColor(d) {
         return '#008000';
     }
 }
+function get_terminal(value) {
+    if (value<=1) {
+        return ''
+    }    
+    else{
+        return 's'
+    }
+}
+
 // ajouter les infos à chaque entité geojson
 function onEachFeature(feature, layer) {
     if (feature.properties) {
@@ -136,18 +145,89 @@ function onEachFeature(feature, layer) {
             popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
         }
 
-        // Info sécurité -------------------------------------------
-        var foret_ha = feature.properties["foret_ha"];
-        var score_foret = feature.properties["score_foret"];
+        // Info loyer -------------------------------------------
+        var loyer = feature.properties["loyer"];
+        var score_loyer = feature.properties["score_loyer"];
 
-        if (foret_ha !== undefined && score_foret !== undefined) {
-            var color = getpopupColor(score_foret);
-            popupContent += "<p>Forêt (rayon de 10km) : " + foret_ha + " ha (<strong><span style='color:" + color + "'>" + score_foret + "</span></strong>)</p>";
-        } else if (foret_ha !== undefined || score_foret !== undefined) {
-            popupContent += "<p>Forêt (rayon de 10km) : N/A ha (-)</p>";
+        if (loyer !== undefined && score_loyer !== undefined) {
+            var color = getpopupColor(score_loyer);
+            popupContent += "<p>Prix du loyer : " + loyer + " €/m² (<strong><span style='color:" + color + "'>" + score_loyer + "</span></strong>)</p>";
+        } else if (loyer !== undefined || score_loyer !== undefined) {
+            popupContent += "<p>Prix du loyer : N/A (-)</p>";
+        }
+
+        // Info sécurité -------------------------------------------
+        var faits_pmil_hab = feature.properties["faits_pmil_hab"];
+        var score_secu = feature.properties["score_secu"];
+
+        if (faits_pmil_hab !== undefined && score_secu !== undefined) {
+            var color = getpopupColor(score_secu);
+            popupContent += "<p>Sécurité : <strong><span style='color:" + color + "'>" + score_secu + "</span></strong> ("+ faits_pmil_hab+" acte" + get_terminal(faits_pmil_hab) + "/1000hab/8ans)</p>";
+        } else if (faits_pmil_hab !== undefined || score_secu !== undefined) {
+            popupContent += "<p>Sécurité : N/A (-)</p>";
+        }
+
+        // Info transports -------------------------------------------
+        popupContent +="<p><strong>--</strong></p>"
+
+        var n_gares = feature.properties["n_gares"];
+        var n_trloc = feature.properties["n_trloc"];
+        var score_transport = feature.properties["score_transport"];
+
+        if (n_gares !== undefined && score_transport !== undefined) {
+            var color = getpopupColor(score_transport);
+            popupContent += "<p>Transports en commun : <strong><span style='color:" + color + "'>" + score_transport + "</span></strong> ("+ n_gares+" gare" + get_terminal(n_gares) + ", "+ n_trloc+" arrêt" + get_terminal(n_trloc) + " de bus)</p>";
+        } else if (n_gares !== undefined || score_transport !== undefined) {
+            popupContent += "<p>Sécurité : N/A (-)</p>";
+        }
+
+        // Info vélo -------------------------------------------
+        var velo_km = feature.properties["velo_km"];
+        var score_velo = feature.properties["score_velo"];
+
+        if (velo_km !== undefined && score_velo !== undefined) {
+            var color = getpopupColor(score_velo);
+            popupContent += "<p>Vélo : <strong><span style='color:" + color + "'>" + score_velo + "</span></strong> ("+ velo_km+" km de pistes cyclables)</p>";
+        } else if (velo_km !== undefined || score_velo !== undefined) {
+            popupContent += "<p>Vélo : N/A (-)</p>";
+        }
+
+        // Info restauration -------------------------------------------
+        popupContent +="<p><strong>--</strong></p>"
+        var n_restauration = feature.properties["n_restauration"];
+        var score_restauration = feature.properties["score_restauration"];
+
+        if (n_restauration !== undefined && score_restauration !== undefined) {
+            var color = getpopupColor(score_restauration);
+            popupContent += "<p>Restauration : <strong><span style='color:" + color + "'>" + score_restauration + "</span></strong> ("+ n_restauration+" établissement" + get_terminal(n_restauration)+ ")</p>";
+        } else if (n_restauration !== undefined || score_restauration !== undefined) {
+            popupContent += "<p>Restauration : N/A (-)</p>";
+        }
+
+        // Info commerce proxi -------------------------------------------
+        var n_commerce_proxy = feature.properties["n_commerce_proxy"];
+        var score_commerce_proxy = feature.properties["score_commerce_proxy"];
+
+        if (n_commerce_proxy !== undefined && score_commerce_proxy !== undefined) {
+            var color = getpopupColor(score_commerce_proxy);
+            popupContent += "<p>Commerces de proximité : <strong><span style='color:" + color + "'>" + score_commerce_proxy + "</span></strong> ("+ n_commerce_proxy+" établissement" + get_terminal(n_commerce_proxy)+ ")</p>";
+        } else if (n_commerce_proxy !== undefined || score_commerce_proxy !== undefined) {
+            popupContent += "<p>Commerces de proximité : N/A (-)</p>";
+        }
+
+        // Info grandes surfaces -------------------------------------------
+        var n_grandesurf = feature.properties["n_grandesurf"];
+        var score_grandesurf = feature.properties["score_grandesurf"];
+
+        if (n_grandesurf !== undefined && score_grandesurf !== undefined) {
+            var color = getpopupColor(score_grandesurf);
+            popupContent += "<p>Grandes surfaces : <strong><span style='color:" + color + "'>" + score_grandesurf + "</span></strong> ("+ n_grandesurf+" établissement" + get_terminal(n_grandesurf)+ ")</p>";
+        } else if (n_grandesurf !== undefined || score_grandesurf !== undefined) {
+            popupContent += "<p>Grandes surfaces : N/A (-)</p>";
         }
 
         // Info argiles -------------------------------------------
+        popupContent +="<p><strong>--</strong></p>"
         var score_rga = feature.properties["score_rga"];
 
         if (score_rga !== undefined) {
@@ -188,6 +268,81 @@ function onEachFeature(feature, layer) {
         } else if (score_indus !== undefined) {
             popupContent += "<p>Risque industriel : N/A ha (-)</p>";
         }
+
+        // Info foot/rugby -------------------------------------------
+        popupContent +="<p><strong>--</strong></p>"
+        var n_terrain = feature.properties["n_terrain"];
+        var score_terrain = feature.properties["score_terrain"];
+
+        if (n_terrain !== undefined && score_terrain !== undefined) {
+            var color = getpopupColor(score_terrain);
+            popupContent += "<p>Foot/rugby : <strong><span style='color:" + color + "'>" + score_terrain + "</span></strong> ("+ n_terrain+" terrain" + get_terminal(n_terrain)+ ")</p>";
+        } else if (n_terrain !== undefined || score_terrain !== undefined) {
+            popupContent += "<p>Foot/rugby : N/A (-)</p>";
+        }
+
+        // Info pétanque -------------------------------------------
+        var n_boul = feature.properties["n_boul"];
+        var score_boul = feature.properties["score_boul"];
+
+        if (n_boul !== undefined && score_boul !== undefined) {
+            var color = getpopupColor(score_boul);
+            popupContent += "<p>Pétanque : <strong><span style='color:" + color + "'>" + score_boul + "</span></strong> ("+ n_boul+" terrain" + get_terminal(n_boul)+ ")</p>";
+        } else if (n_boul !== undefined || score_boul !== undefined) {
+            popupContent += "<p>Pétanque : N/A (-)</p>";
+        }
+
+        // Info salle spé -------------------------------------------
+        var n_salle_spe = feature.properties["n_salle_spe"];
+        var score_salle_spe = feature.properties["score_salle_spe"];
+
+        if (n_salle_spe !== undefined && score_salle_spe !== undefined) {
+            var color = getpopupColor(score_salle_spe);
+            popupContent += "<p>Salles spécialisées : <strong><span style='color:" + color + "'>" + score_salle_spe + "</span></strong> ("+ n_salle_spe+" salle" + get_terminal(n_salle_spe)+ ")</p>";
+        } else if (n_salle_spe !== undefined || score_salle_spe !== undefined) {
+            popupContent += "<p>Salles spécialisées : N/A (-)</p>";
+        }
+
+        // Info culture -------------------------------------------
+        popupContent +="<p><strong>--</strong></p>"
+        var n_musee = feature.properties["n_musee"];
+        var n_histo = feature.properties["n_histo"];
+        var n_cinema = feature.properties["n_cinema"];
+        var n_biblio = feature.properties["n_biblio"];
+        var score_culture = feature.properties["score_culture"];
+
+        if (n_salle_spe !== undefined && score_culture !== undefined) {
+            var color = getpopupColor(score_culture);
+            popupContent += "<p>Culture : <strong><span style='color:" + color + "'>" + score_culture + "</span></strong> ("+ n_cinema+" cinéma" + get_terminal(n_cinema) + ", "+ n_musee+" musée" + get_terminal(n_musee)  + ", "+ n_biblio+" librairie" + get_terminal(n_biblio)+"/bibliothèque" + get_terminal(n_biblio) + ", "+ n_histo+" site" + get_terminal(n_histo)+" historique" + get_terminal(n_histo)+ ")</p>";
+        } else if (n_salle_spe !== undefined || score_culture !== undefined) {
+            popupContent += "<p>Culture : N/A (-)</p>";
+        }
+
+        // Info éducation -------------------------------------------
+        var n_lycee = feature.properties["n_lycee"];
+        var n_maternelle = feature.properties["n_maternelle"];
+        var n_college = feature.properties["n_college"];
+        var n_primaire = feature.properties["n_primaire"];
+        var score_edu = feature.properties["score_edu"];
+
+        if (n_salle_spe !== undefined && score_edu !== undefined) {
+            var color = getpopupColor(score_edu);
+            popupContent += "<p>Éducation : <strong><span style='color:" + color + "'>" + score_edu + "</span></strong> ("+ n_maternelle+" maternelle" + get_terminal(n_maternelle) + ", "+ n_primaire+" primaire" + get_terminal(n_primaire)  + ", "+ n_college+" collège" + get_terminal(n_college) + ", "+ n_lycee+" lycée" + get_terminal(n_lycee)+")</p>";
+        } else if (n_salle_spe !== undefined || score_edu !== undefined) {
+            popupContent += "<p>Éducation : N/A (-)</p>";
+        }
+
+        // Info santé -------------------------------------------
+        var n_sante = feature.properties["n_sante"];
+        var score_sante = feature.properties["score_sante"];
+
+        if (n_sante !== undefined && score_sante !== undefined) {
+            var color = getpopupColor(score_sante);
+            popupContent += "<p>Santé : <strong><span style='color:" + color + "'>" + score_sante + "</span></strong> ("+ n_sante+" professionnel" + get_terminal(n_sante)+"/établissement" + get_terminal(n_sante)+ ")</p>";
+        } else if (n_sante !== undefined || score_sante !== undefined) {
+            popupContent += "<p>Santé : N/A (-)</p>";
+        }
+
         
         layer.bindPopup(popupContent);
     }
