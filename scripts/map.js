@@ -362,7 +362,7 @@ function fetch_geojson(apiEndpoint, fileName){
             return response.json();
         })
         .then(function(data) {
-            console.log('GeoJSON data:', data);
+            //console.log('GeoJSON data:', data);
             // Ajout du GeoJSON des communes + style sur la variable score
             let layer = L.geoJSON(data, {
                 style: style,
@@ -424,7 +424,7 @@ function fetch_new_geojson(newApiEndpoint, filename, parameters){
     })
     .then(response => response.json())
     .then(data => {
-        console.log('GeoJSON modifié:', data);
+        //console.log('GeoJSON modifié:', data);
         // Ajout du GeoJSON des communes + style sur la variable score
         let layer = L.geoJSON(data, {
             style: style,
@@ -655,7 +655,7 @@ document.getElementById('sendButton').addEventListener('click', function() {
         poids_edu: parseInt(value_poids_edu),
         poids_sante: parseInt(value_poids_sante)
     };
-    console.log(values);
+    //console.log(values);
     // clear layer and get updated jsons
     geoJsonLayerGroup.clearLayers();
     geojsonLayers = [];
