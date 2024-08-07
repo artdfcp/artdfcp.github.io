@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get me home ! - Sources</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="page_sources">
+    <div class="grid-sources-container">
+        <div></div>
+        <div id="div_sources">
+            <header>
+                <div id="titre-source">
+                    <h1>GET ME HOME !</h1>
+                    <h2>Sources des données utilisées</h2>
+                </div>
+                <div id="liste_sources">
+                    <ul>
+                        <li><strong>Limites et noms de communes :</strong> IGN - <a href="https://geoservices.ign.fr/adminexpress">ADMIN Express</a> (version 3.1 du 2023-02-16)
+                            <p>Géométries des communes généralisées (Visvalingam). Les communes à petite surface peuvent ne pas apparaître sur la carte.</p></li>
+                        <li><strong>Population :</strong> IGN - <a href="https://geoservices.ign.fr/adminexpress">ADMIN Express</a> (version 3.1 du 2023-02-16)
+                            <p>Champ "POPULATION". Le score de forte densité est de 100 si il y a plus de 3000hab/km². Les autres scores sont proportionnels à la densité </p></li>
+                        <li><strong>Forêts :</strong> IGN - <a href="https://geoservices.ign.fr/bdforet">Masque Forêt 2019-2022</a> (version bêta)
+                            <p>Hectares de forêt dans un rayon de 10 kilomètres autour du centre de la ville. Seules les forêts > 5 hectares sont prises en compte. Ne compte que les forêts françaises (effets de bord aux frontières). Le score correspond au classement de la ville.</p></li>
+                        <li><strong>Prix des loyers :</strong> ANIL - <a href="https://www.data.gouv.fr/fr/datasets/carte-des-loyers-indicateurs-de-loyers-dannonce-par-commune-en-2022/#/resources">Carte des loyers</a> (2022)
+                            <p>Estimations ANIL, à partir des données du Groupe SeLoger et de leboncoin. Fichier "Indicateurs de loyer appartement".</p></li>
+                        <li><strong>Sécurité :</strong> Police/Gendarmerie - <a href="https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/">Bases statistiques de la délinquance</a> (2016-2023)
+                            <p>Crimes et délits enregistré par la police et la gendarmerie nationale. Données agrégées par communes tous actes confondus, pour 1000 habitants sur la période 2016-2023.</p></li>
+                        <li><strong>Transports en commun :</strong> OpenStreetMAP - <a href="https://www.openstreetmap.org/">Base de données OSM</a> (export 06/2024)
+                            <p>Gares (pour la moitié du score), stations de bus et stations de tram (pour l'autre moitié). </p></li>
+                        <li><strong>Vélo :</strong> datagouv - <a href="https://transport.data.gouv.fr/datasets/amenagements-cyclables-france-metropolitaine">Base Nationale des Aménagements Cyclables</a> (export OSM 07/2022)
+                            <p>Le score dépend de la longueur de piste cyclable dans un rayon de 10 kilomètres. </p></li>
+                        <li><strong>Commerces :</strong> OpenStreetMAP - <a href="https://www.openstreetmap.org/">Base de données OSM</a> (export 06/2024)
+                            <p>Restauration : restaurant, bar, fast-food, café, chacun contribue pour le quart du score.</p>
+                            <p>Commerces de proximité : boulangeries, cordonniers, fromagers, presses, épiceries, petits supermarchés... </p>
+                            <p>Grandes surfaces : galeries marchandes et centres commerciaux</p></li>
+                        <li><strong>Retrait-gonflement des argiles :</strong> Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/retrait-gonflement-des-argiles">Retrait-gonflement des argiles</a>
+                            <p>Score par commune calculé comme la part de la surface concernée, pondérée par le niveau de risque</p></li>
+                        <li><strong>Risque inondation :</strong> Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020">Zonages Inondation</a> (Rapportage 2020)
+                            <p>Score de 0 pour les communes identifiées comme TRI (Territoire à risques importants d'inondation), 100 sinon.</p></li>
+                        <li><strong>Risque incendie :</strong> IGN/Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/obligations-legales-de-debroussaillement">Obligations Légales de Débroussaillement</a>
+                            <p>Score en fonction de la part de la surface de la commune concernée.</p></li>
+                        <li><strong>Risque industriel :</strong> IGN/Géorisques - <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/installations-industrielles">Installations industrielles</a> (06/2024)
+                            <p>Score calculé à partir du nombre d'installations classées SEVESO dans un rayon de 10km autour du centre de la ville. (SEVESO seuil bas : 2, seuil haut : 5. Le score est 0 si la somme est supérieure à 50, proportionnel sinon).</p></li>
+                        <li><strong>Sport :</strong> Ministère des Sports - <a href="https://equipements.sports.gouv.fr/explore/dataset/data-es/export/">Data ES</a> (export 06/2024)
+                            <p>Export des terrains de foot, de rugby, de pétanque et des salles de sports spécialisées.</p></li>
+                        <li><strong>Culture :</strong> Basilic/datagouv - <a href="https://www.data.gouv.fr/fr/datasets/base-des-lieux-et-equipements-culturels-basilic/">Base des lieux et équipements culturels</a> (export 06/2024)
+                            <p>Le score dépend du nombre de cinémas, musées, bibliothèques/librairies et de sites historiques dans un rayon de 5km. Chacun contribue au quart du score</p></li>
+                        <li><strong>Éducation :</strong> RAMSESE - <a href="https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres-1/">Base des établissements d'enseignement</a> (export 06/2024)
+                            <p>Le score dépend du nombre de lycées, collèges, écoles primaires et de maternelles. Chacun contribue au quart du score</p></li>
+                        <li><strong>Santé :</strong> OpenStreetMAP - <a href="https://www.openstreetmap.org/">Base de données OSM</a> (export 06/2024)
+                            <p>Score déterminé en fonction du nombre d'hopitaux, cliniques, médecins, vétérinaires, dentistes et pharmacies.</p>
+                        </ul>
+                </div>
+            </header>
+        </div>
+        <div></div>
+    </div>
+</body>
+</html>

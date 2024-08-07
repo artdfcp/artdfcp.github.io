@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get me home ! - Carte</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <button id="show-panel"><p><strong>></strong></p></button>
+    <div class="elem-container">
+        <div id="searchpanel">
+            <div id="parameters">
+                <div id="head">
+                    <button id="close"><p>x</p></button>
+                </div>
+                <div class="title_container">
+                    <p id="search_title"><strong>Rechercher par critère</strong></p>
+                </div>
+                <div class="all-sliders">
+                    <div class="slider-container">
+                        <div class="slider-label">Forte densité de population : <strong><span id="value_poids_dpop_desc">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_dpop_desc">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Faible densité de population : <strong><span id="value_poids_dpop_asc">5</span></strong></div>
+                        <input type="range" min="0" max="10" value="5" class="slider" id="poids_dpop_asc">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Surface de forêt : <strong><span id="value_poids_foret">10 (très important)</span></strong></div>
+                        <input type="range" min="0" max="10" value="10" class="slider" id="poids_foret">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Prix du loyer : <strong><span id="value_poids_loyer">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_loyer">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Sécurité : <strong><span id="value_poids_securite">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_securite">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Transports</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Transports en commun : <strong><span id="value_poids_transports">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_transports">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Pistes cyclables : <strong><span id="value_poids_velo">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_velo">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Commerces</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Restauration : <strong><span id="value_poids_restauration">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_restauration">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Commerces de proximité : <strong><span id="value_poids_commerce_proxi">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_commerce_proxi">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Grandes surfaces : <strong><span id="value_poids_grande_surf">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_grande_surf">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Risques naturels et industriels</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Retrait/gonflement des argiles : <strong><span id="value_poids_rga">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_rga">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Inondations : <strong><span id="value_poids_inondation">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_inondation">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Incendies : <strong><span id="value_poids_incendies">2</span></strong></div>
+                        <input type="range" min="0" max="10" value="2" class="slider" id="poids_incendies">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Sites SEVESO : <strong><span id="value_poids_seveso">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_seveso">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Sport</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Terrains (foot/rugby) : <strong><span id="value_poids_terrain">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_terrain">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Pétanque : <strong><span id="value_poids_boul">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_boul">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Salles spécialisées : <strong><span id="value_poids_salles_spe">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_salles_spe">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Culture</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Lieux culturels (cinéma, musées...) : <strong><span id="value_poids_culture">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_culture">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Éducation</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Établissements d'enseignement : <strong><span id="value_poids_edu">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_edu">
+                    </div>
+
+                    <div class="subtitle_cont">
+                        <p id="subtitle"><strong>Santé</strong></p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-label">Établissements de santé : <strong><span id="value_poids_sante">0 (peu importe)</span></strong></div>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="poids_sante">
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button id="sendButton">Appliquer les critères</button>
+            </div>
+            <div id="fill">.</div>
+        </div>
+        <button id="hide_json">Cacher les scores</button>
+        <div id="loader-container">
+            <div id="map"></div>
+            <div class="loader" id="loader"></div>
+        </div>
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="scripts/map.js"></script>
+</body>
+</html>
